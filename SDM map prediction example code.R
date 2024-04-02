@@ -20,15 +20,13 @@ source(system.file('shiny/funcs', 'functions.R', package = 'wallace'))
 
 
 ###Example species: Marumba cristata bukaiana
-number<-2
-j<-"Marumba cristata"
-j<-as.character(j)
+sp<-"Marumba cristata"
 
 #Obtain data from GBIF
 # query selected database for occurrence records
-results <- spocc::occ(query = j, from = "gbif", limit = 500, has_coords = TRUE)
+results <- spocc::occ(query = sp, from = "gbif", limit = 500, has_coords = TRUE)
 # retrieve data table from spocc object
-results.data <- results[["gbif"]]$data[[formatSpName(j)]]
+results.data <- results[["gbif"]]$data[[formatSpName(sp)]]
 # remove rows with duplicate coordinates
 occs.dups <- duplicated(results.data[c('longitude', 'latitude')])
 occs <- results.data[!occs.dups,]
